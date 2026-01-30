@@ -1,32 +1,23 @@
+# Load dataset
 data(mtcars)
-mtcars
+
+# Basic view
 head(mtcars)
 str(mtcars)
-dim(mtcars)
 summary(mtcars)
+
+# MPG statistics
 mean(mtcars$mpg)
 median(mtcars$mpg)
-sd(mtcars$mpg)
-var(mtcars$mpg)
-range(mtcars$mpg)
+
+# Check missing values
 sum(is.na(mtcars))
-hist(mtcars$mpg,
-main="Histogram of MPG",
-xlab="miles per gallon",
-col="lightblue")
-boxplot(mtcars$mpg,
-main="Boxplot of MPG",
-col="orange")
-barplot(table(mtcars$cyl),
-main="cars by numbers of cyclinders",
-xlab="cycliders",
-ylab="count",
-col="lightgreen")
-plot(mtcars$wt,mtcars$mpg,
-main="weight vs MPG",
-xlab="weight",
-ylab="MPG",
-col="blue",
-pch=19)
-cor_matrix <-cor(mtcars)
+
+# Simple plots
+hist(mtcars$mpg)
+boxplot(mtcars$mpg)
+plot(mtcars$wt, mtcars$mpg)
+
+# Correlation heatmap
+cor_matrix <- cor(mtcars)
 heatmap(cor_matrix)
