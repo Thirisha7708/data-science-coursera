@@ -1,0 +1,23 @@
+# Load dataset
+data(mtcars)
+
+# Basic view
+head(mtcars)
+str(mtcars)
+summary(mtcars)
+
+# MPG statistics
+mean(mtcars$mpg)
+median(mtcars$mpg)
+
+# Check missing values
+sum(is.na(mtcars))
+
+# Simple plots
+hist(mtcars$mpg)
+boxplot(mtcars$mpg)
+plot(mtcars$wt, mtcars$mpg)
+
+# Correlation heatmap
+cor_matrix <- cor(mtcars)
+heatmap(cor_matrix)
