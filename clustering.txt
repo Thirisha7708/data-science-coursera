@@ -1,0 +1,31 @@
+# -------------------------------
+# Simple K-Means Program in R
+# -------------------------------
+
+# Load dataset
+data(iris)
+
+# Display first 6 rows
+print("First 6 rows of Iris dataset:")
+print(head(iris))
+
+# Select numeric columns
+iris_data <- iris[, 1:4]
+
+# Apply K-Means clustering (K = 3)
+set.seed(123)
+kmeans_result <- kmeans(iris_data, centers = 3)
+
+# Display cluster centers
+print("Cluster Centers:")
+print(kmeans_result$centers)
+
+# Display number of observations in each cluster
+print("Cluster Count:")
+print(table(kmeans_result$cluster))
+
+# Compare clusters with actual species
+print("Comparison with Actual Species:")
+print(table(kmeans_result$cluster, iris$Species))
+
+# End of Program
