@@ -1,23 +1,31 @@
+# -------------------------------
+# Simple K-Means Program in R
+# -------------------------------
+
 # Load dataset
-data(mtcars)
+data(iris)
 
-# Basic view
-head(mtcars)
-str(mtcars)
-summary(mtcars)
+# Display first 6 rows
+print("First 6 rows of Iris dataset:")
+print(head(iris))
 
-# MPG statistics
-mean(mtcars$mpg)
-median(mtcars$mpg)
+# Select numeric columns
+iris_data <- iris[, 1:4]
 
-# Check missing values
-sum(is.na(mtcars))
+# Apply K-Means clustering (K = 3)
+set.seed(123)
+kmeans_result <- kmeans(iris_data, centers = 3)
 
-# Simple plots
-hist(mtcars$mpg)
-boxplot(mtcars$mpg)
-plot(mtcars$wt, mtcars$mpg)
+# Display cluster centers
+print("Cluster Centers:")
+print(kmeans_result$centers)
 
-# Correlation heatmap
-cor_matrix <- cor(mtcars)
-heatmap(cor_matrix)
+# Display number of observations in each cluster
+print("Cluster Count:")
+print(table(kmeans_result$cluster))
+
+# Compare clusters with actual species
+print("Comparison with Actual Species:")
+print(table(kmeans_result$cluster, iris$Species))
+
+# End of Program
