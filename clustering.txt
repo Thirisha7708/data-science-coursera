@@ -1,31 +1,28 @@
 # -------------------------------
-# Simple K-Means Program in R
+# K-Means Clustering - Coursera Perfect Version
 # -------------------------------
 
 # Load dataset
 data(iris)
 
-# Display first 6 rows
-print("First 6 rows of Iris dataset:")
-print(head(iris))
-
-# Select numeric columns
+# Select only numeric features
 iris_data <- iris[, 1:4]
+
+# Standardize the data
+iris_scaled <- scale(iris_data)
 
 # Apply K-Means clustering (K = 3)
 set.seed(123)
-kmeans_result <- kmeans(iris_data, centers = 3)
+kmeans_result <- kmeans(iris_scaled, centers = 3, nstart = 25)
 
-# Display cluster centers
-print("Cluster Centers:")
-print(kmeans_result$centers)
+# Confusion matrix
+conf_matrix <- table(iris$Species, kmeans_result$cluster)
 
-# Display number of observations in each cluster
-print("Cluster Count:")
-print(table(kmeans_result$cluster))
+print("Confusion Matrix:")
+print(conf_matrix)
 
-# Compare clusters with actual species
-print("Comparison with Actual Species:")
-print(table(kmeans_result$cluster, iris$Species))
+# Calculate accuracy correctly
+accuracy <- sum(apply(conf_matrix, 1, max)) / sum(conf_matrix)
 
-# End of Program
+print("Accuracy:")
+print(accuracy)
